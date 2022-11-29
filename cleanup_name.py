@@ -27,7 +27,7 @@ To Install:
 from __future__ import print_function
 
 __title__ = "Cleanup Name"
-__version_info__ = (0, 0, 1)
+__version_info__ = (0, 1, 0)
 __version__ = ".".join([str(num) for num in __version_info__])
 __version_title__ = "{} v{}".format(__title__, __version__)
 
