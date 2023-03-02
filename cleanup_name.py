@@ -28,7 +28,7 @@ from __future__ import print_function
 from PySide2 import QtWidgets, QtCore
 
 __title__ = "Cleanup Name"
-__version_info__ = (0, 2, 0)
+__version_info__ = (0, 2, 1)
 __version__ = ".".join([str(num) for num in __version_info__])
 __version_title__ = "{} v{}".format(__title__, __version__)
 
@@ -341,6 +341,14 @@ class CleanupName(object):
 
         return tidy
 
+    @staticmethod                                                                       
+    def refresh():                                                                      
+        """Necessary after changing attributes to have the changes show up on the       
+        Desktop.  Otherwise, the script runs, but the change will not be shown on the   
+        thumbnail until you tap on the UI."""                                           
+                                                                                        
+        import flame                                                                    
+        flame.execute_shortcut("Refresh Thumbnails")
 
     def update_view(self):
         """Clear the list view and replace with the appropriate list."""
@@ -378,6 +386,7 @@ class CleanupName(object):
 
             self.window.close()
             self.update_names()
+            self.refresh()
             self.message("Done!")
 
         def cancel_button():
