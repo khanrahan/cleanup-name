@@ -432,8 +432,6 @@ class CleanupName:
         """Necessary after changing attributes to have the changes show up on the
         Desktop.  Otherwise, the script runs, but the change will not be shown on the
         thumbnail until you tap on the UI."""
-
-        import flame
         flame.execute_shortcut("Refresh Thumbnails")
 
     def update_view(self):
