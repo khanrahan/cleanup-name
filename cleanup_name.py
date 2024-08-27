@@ -1,4 +1,4 @@
-'''
+"""
 Script Name: Cleanup Name
 Written By: Kieran Hanrahan
 
@@ -27,14 +27,14 @@ To Install:
 
     For a specific user, copy this file to:
     /opt/Autodesk/user/<user name>/python
-'''
+"""
 
 from PySide2 import QtWidgets, QtCore
 
-__title__ = "Cleanup Name"
-__version_info__ = (0, 2, 1)
-__version__ = ".".join([str(num) for num in __version_info__])
-__version_title__ = "{} v{}".format(__title__, __version__)
+__title__ = 'Cleanup Name'
+__version_info__ = (1, 0, 0, 'dev')
+__version__ = '.'.join([str(num) for num in __version_info__])
+__version_title__ = '{} v{}'.format(__title__, __version__)
 
 MESSAGE_PREFIX = "[PYTHON HOOK]"
 
@@ -139,13 +139,13 @@ class FlameListWidget(QtWidgets.QListWidget):
                          background-color: #2a2a2a;
                          alternate-background-color: #2d2d2d;
                          outline: none;
-                         font: 14px "Discreet"}
+                         font: 14px 'Discreet'}
             QListWidget::item:selected {color: #d9d9d9;
                                         background-color: #474747}""")
 
 
 class FlamePushButtonMenu(QtWidgets.QPushButton):
-    '''
+    """
     Custom Qt Flame Menu Push Button Widget v2.0
 
     button_name: text displayed on button [str]
@@ -163,7 +163,7 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
 
         push_button_menu_options = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
         menu_push_button = FlamePushButtonMenu(push_button_menu_options[0], push_button_menu_options)
-    '''
+    """
 
     def __init__(self, button_name, menu_options, menu_width=150, max_menu_width=2000, menu_action=None):
         super(FlamePushButtonMenu, self).__init__()
@@ -178,7 +178,7 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
             QPushButton {color: rgb(154, 154, 154);
                          background-color: rgb(45, 55, 68);
                          border: none;
-                         font: 14px "Discreet";
+                         font: 14px 'Discreet';
                          padding-left: 6px;
                          text-align: left}
             QPushButton:disabled {color: rgb(116, 116, 116);
@@ -201,7 +201,7 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
             QMenu {color: rgb(154, 154, 154);
                    background-color: rgb(45, 55, 68);
                    border: none;
-                   font: 14px "Discreet"}
+                   font: 14px 'Discreet'}
             QMenu::item:selected {color: rgb(217, 217, 217);
                    background-color: rgb(58, 69, 81)}""")
 
@@ -212,7 +212,7 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
 
 
 class FlameTextEdit(QtWidgets.QTextEdit):
-    '''
+    """
     Custom Qt Flame Text Edit Widget v2.1
 
     text: text to be displayed [str]
@@ -221,7 +221,7 @@ class FlameTextEdit(QtWidgets.QTextEdit):
     To use:
 
         text_edit = FlameTextEdit('some_text_here', True_or_False)
-    '''
+    """
 
     def __init__(self, text, read_only=False):
         super(FlameTextEdit, self).__init__()
@@ -242,7 +242,7 @@ class FlameTextEdit(QtWidgets.QTextEdit):
                            selection-background-color: #b8b1a7;
                            border: 1px solid rgb(55, 55, 55);
                            padding-left: 5px;
-                           font: 14px "Discreet"}
+                           font: 14px 'Discreet'}
                 ScrollBar {color: #111111;
                            background: rgb(49, 49, 49)}
                 ScrollBar::handle {color: #111111;
@@ -275,7 +275,7 @@ class FlameTextEdit(QtWidgets.QTextEdit):
                                   selection-background-color: #b8b1a7;
                                   border: none;
                                   padding-left: 5px;
-                                  font: 14px "Discreet"}
+                                  font: 14px 'Discreet'}
                 QTextEdit:focus {background-color: #495663}'
                 QScrollBar {color: #111111;
                             background: rgb(49, 49, 49)}
@@ -312,13 +312,13 @@ class CleanupName(object):
         self.names = [clip.name.get_value() for clip in self.selection]
         self.names_clean = [self.cleanup_text(name) for name in self.names]
 
-        self.description = ("Clean up clip names by removing all symbols and replacing "
-                            "whitespace with underscores.")
-        self.views = ["Clean Name", "Original Name"]
+        self.description = ('Clean up clip names by removing all symbols and replacing '
+                            'whitespace with underscores.')
+        self.views = ['Clean Name', 'Original Name']
         self.view_selection = self.views[0]
 
         self.message(__version_title__)
-        self.message("Script called from {}".format(__file__))
+        self.message('Script called from {}'.format(__file__))
 
         self.main_window()
 
@@ -327,7 +327,7 @@ class CleanupName(object):
     def message(string):
         """Print message to shell window and append global MESSAGE_PREFIX."""
 
-        print(" ".join([MESSAGE_PREFIX, string]))
+        print(' '.join([MESSAGE_PREFIX, string]))
 
 
     @staticmethod
@@ -337,11 +337,11 @@ class CleanupName(object):
         import re
 
         # Delete first and last character if a symbol or space.
-        chopped = re.sub(r"^[\W_]+|[\W_]+$", "", text)
+        chopped = re.sub(r'^[\W_]+|[\W_]+$', '', text)
         # Convert symbols & whitespace to underscores.
-        sanitized = re.sub(r"\W+", "_", chopped)
+        sanitized = re.sub(r'\W+', '_', chopped)
         # Remove duplicate underscores.
-        tidy = re.sub(r"(_)\1+", "_", sanitized)
+        tidy = re.sub(r'(_)\1+', '_', sanitized)
 
         return tidy
 
@@ -359,9 +359,9 @@ class CleanupName(object):
 
         self.list_scroll.clear()
 
-        if self.view_btn.text() == "Clean Name":
+        if self.view_btn.text() == 'Clean Name':
             self.list_scroll.addItems(self.names_clean)
-        if self.view_btn.text() == "Original Name":
+        if self.view_btn.text() == 'Original Name':
             self.list_scroll.addItems(self.names)
 
 
@@ -376,11 +376,11 @@ class CleanupName(object):
 
         for num, clip in enumerate(self.selection):
             if self.names[num] == self.names_clean[num]:
-                self.message("Skipping {}. No changes necessary.".format(self.names[num]))
+                self.message('Skipping {}. No changes necessary.'.format(self.names[num]))
                 continue
 
             clip.name.set_value(self.names_clean[num])
-            self.message("Renamed {} to {}".format(self.names[num],
+            self.message('Renamed {} to {}'.format(self.names[num],
                                                    self.names_clean[num]))
 
 
@@ -396,7 +396,7 @@ class CleanupName(object):
         def cancel_button():
 
             self.window.close()
-            self.message("Cancelled!")
+            self.message('Cancelled!')
 
         self.window = QtWidgets.QWidget()
 
@@ -414,8 +414,8 @@ class CleanupName(object):
                          (resolution.height() / 2) - (self.window.frameSize().height() / 2))
 
         # Labels
-        self.description_label = FlameLabel("Description", "normal", self.window)
-        self.view_label = FlameLabel("View", "normal", self.window)
+        self.description_label = FlameLabel('Description', 'normal', self.window)
+        self.view_label = FlameLabel('View', 'normal', self.window)
 
         # List Widget
         self.list_scroll = FlameListWidget(self.window)
@@ -432,7 +432,7 @@ class CleanupName(object):
         self.ok_btn.setStyleSheet('background: #732020')
         self.ok_btn.setShortcut('Return')
 
-        self.cancel_btn = FlameButton("Cancel", cancel_button, self.window)
+        self.cancel_btn = FlameButton('Cancel', cancel_button, self.window)
 
         # Text
         self.description_text = FlameTextEdit(self.description, True)
@@ -483,9 +483,9 @@ def scope_clip(selection):
 
 def get_media_panel_custom_ui_actions():
 
-    return [{'name': "Edit...",
-             'actions': [{'name': "Cleanup Name",
+    return [{'name': 'Edit...',
+             'actions': [{'name': 'Cleanup Name',
                           'isVisible': scope_clip,
                           'execute': CleanupName,
-                          'minimumVersion': "2022"}]
+                          'minimumVersion': '2022'}]
             }]
