@@ -29,6 +29,8 @@ To Install:
     /opt/Autodesk/user/<user name>/python
 """
 
+from functools import partial
+
 import flame
 from PySide2 import QtCore, QtWidgets
 
