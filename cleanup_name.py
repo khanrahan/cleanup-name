@@ -174,13 +174,15 @@ class FlameListWidget(QtWidgets.QListWidget):
         self.setAlternatingRowColors(True)
         self.setUniformItemSizes(True)
         self.setStyleSheet("""
-            QListWidget {color: #9a9a9a;
-                         background-color: #2a2a2a;
-                         alternate-background-color: #2d2d2d;
-                         outline: none;
-                         font: 14px 'Discreet'}
-            QListWidget::item:selected {color: #d9d9d9;
-                                        background-color: #474747}""")
+            QListWidget {
+                color: #9a9a9a;
+                background-color: #2a2a2a;
+                alternate-background-color: #2d2d2d;
+                outline: none;
+                font: 14px 'Discreet'}
+            QListWidget::item:selected {
+                color: #d9d9d9;
+                background-color: #474747}""")
 
 
 class FlamePushButtonMenu(QtWidgets.QPushButton):
