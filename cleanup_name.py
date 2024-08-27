@@ -427,12 +427,6 @@ class CleanupName:
 
         return tidy
 
-    @staticmethod
-    def refresh():
-        """Necessary after changing attributes to have the changes show up on the
-        Desktop.  Otherwise, the script runs, but the change will not be shown on the
-        thumbnail until you tap on the UI."""
-        flame.execute_shortcut("Refresh Thumbnails")
 
     def update_view(self):
         """Clear the list view and replace with the appropriate list."""
