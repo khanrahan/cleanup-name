@@ -35,7 +35,7 @@ from PySide2 import QtCore, QtWidgets
 TITLE = 'Cleanup Name'
 VERSION_INFO = (1, 0, 0, 'dev')
 VERSION = '.'.join([str(num) for num in VERSION_INFO])
-VERSION_TITLE = '{} v{}'.format(TITLE, VERSION)
+VERSION_TITLE = f'{TITLE} v{VERSION}'
 
 MESSAGE_PREFIX = "[PYTHON HOOK]"
 
@@ -319,7 +319,7 @@ class CleanupName:
         self.view_selection = self.views[0]
 
         self.message(VERSION_TITLE)
-        self.message('Script called from {}'.format(__file__))
+        self.message(f'Script called from {__file__}')
 
         self.main_window()
 
@@ -373,12 +373,11 @@ class CleanupName:
         """
         for num, clip in enumerate(self.selection):
             if self.names[num] == self.names_clean[num]:
-                self.message('Skipping {}. No changes necessary.'.format(self.names[num]))
+                self.message(f'Skipping {self.names[num]}. No changes necessary.')
                 continue
 
             clip.name.set_value(self.names_clean[num])
-            self.message('Renamed {} to {}'.format(self.names[num],
-                                                   self.names_clean[num]))
+            self.message(f'Renamed {self.names[num]} to {self.names_clean[num]}.')
 
 
     def main_window(self):
