@@ -303,7 +303,7 @@ class FlameTextEdit(QtWidgets.QTextEdit):
                                                  height: 0px}""")
 
 
-class CleanupName(object):
+class CleanupName:
     """Takes PyClips and sanitizes the name to remove all symbols and change whitespace
     to underscores."""
 
