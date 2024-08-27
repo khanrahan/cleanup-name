@@ -31,10 +31,10 @@ To Install:
 
 from PySide2 import QtWidgets, QtCore
 
-__title__ = 'Cleanup Name'
-__version_info__ = (1, 0, 0, 'dev')
-__version__ = '.'.join([str(num) for num in __version_info__])
-__version_title__ = '{} v{}'.format(__title__, __version__)
+TITLE = 'Cleanup Name'
+VERSION_INFO = (1, 0, 0, 'dev')
+VERSION = '.'.join([str(num) for num in VERSION_INFO])
+VERSION_TITLE = '{} v{}'.format(TITLE, VERSION)
 
 MESSAGE_PREFIX = "[PYTHON HOOK]"
 
@@ -317,7 +317,7 @@ class CleanupName(object):
         self.views = ['Clean Name', 'Original Name']
         self.view_selection = self.views[0]
 
-        self.message(__version_title__)
+        self.message(VERSION_TITLE)
         self.message('Script called from {}'.format(__file__))
 
         self.main_window()
@@ -402,7 +402,7 @@ class CleanupName(object):
 
         self.window.setMinimumSize(600, 600)
         self.window.setStyleSheet('background-color: #272727')
-        self.window.setWindowTitle(__version_title__)
+        self.window.setWindowTitle(VERSION_TITLE)
 
         # FlameLineEdit class needs this
         self.window.setFocusPolicy(QtCore.Qt.StrongFocus)
