@@ -186,7 +186,7 @@ class FlameListWidget(QtWidgets.QListWidget):
 
 
 class FlamePushButtonMenu(QtWidgets.QPushButton):
-    """Custom Qt Flame Menu Push Button Widget v2.0
+    """Custom Qt Flame Menu Push Button Widget v3.1
 
     button_name: text displayed on button [str]
     menu_options: list of options show when button is pressed [list]
@@ -195,62 +195,90 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
     menu_action: (optional) execute when button is changed. [function]
 
     Usage:
+
         push_button_menu_options = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
         menu_push_button = FlamePushButtonMenu(
-                'push_button_name', push_button_menu_options)
+            'push_button_name', push_button_menu_options)
 
         or
 
         push_button_menu_options = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
         menu_push_button = FlamePushButtonMenu(
-                push_button_menu_options[0], push_button_menu_options)
+            push_button_menu_options[0], push_button_menu_options)
+
+    Notes:
+        Started as v2.1
+        v3.1 adds a functionionality to set the width of the menu to be the same as the
+        button.
     """
 
-    def __init__(self, button_name, menu_options, menu_width=150, max_menu_width=2000,
+    def __init__(self, button_name, menu_options, menu_width=240, max_menu_width=2000,
                  menu_action=None):
-        super().__init__()
-        from functools import partial
+        super(FlamePushButtonMenu, self).__init__()
+
+        self.button_name = button_name
+        self.menu_options = menu_options
+        self.menu_action = menu_action
 
         self.setText(button_name)
         self.setMinimumHeight(28)
         self.setMinimumWidth(menu_width)
-        self.setMaximumWidth(max_menu_width)
+        self.setMaximumWidth(max_menu_width)  # is max necessary?
         self.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.setStyleSheet("""
-            QPushButton {color: rgb(154, 154, 154);
-                         background-color: rgb(45, 55, 68);
-                         border: none;
-                         font: 14px 'Discreet';
-                         padding-left: 6px;
-                         text-align: left}
-            QPushButton:disabled {color: rgb(116, 116, 116);
-                                  background-color: rgb(45, 55, 68);
-                                  border: none}
-            QPushButton:hover {border: 1px solid rgb(90, 90, 90)}
+        self.setStyleSheet('''
+            QPushButton {
+                color: rgb(154, 154, 154);
+                background-color: rgb(45, 55, 68);
+                border: none;
+                font: 14px "Discreet";
+                padding-left: 9px;
+                text-align: left}
+            QPushButton:disabled {
+                color: rgb(116, 116, 116);
+                background-color: rgb(45, 55, 68);
+                border: none}
+            QPushButton:hover {
+                border: 1px solid rgb(90, 90, 90)}
             QPushButton::menu-indicator {image: none}
-            QToolTip {color: rgb(170, 170, 170);
-                      background-color: rgb(71, 71, 71);
-                      border: 10px solid rgb(71, 71, 71)}""")
+            QToolTip {
+                color: rgb(170, 170, 170);
+                background-color: rgb(71, 71, 71);
+                border: 10px solid rgb(71, 71, 71)}''')
 
-        def create_menu(option, menu_action):
-            self.setText(option)
-            if menu_action:
-                menu_action()
+        # Menu
+        def match_width():
+            """Match menu width to the parent push button width."""
+            self.pushbutton_menu.setMinimumWidth(self.size().width())
 
-        pushbutton_menu = QtWidgets.QMenu(self)
-        pushbutton_menu.setFocusPolicy(QtCore.Qt.NoFocus)
-        pushbutton_menu.setStyleSheet("""
-            QMenu {color: rgb(154, 154, 154);
-                   background-color: rgb(45, 55, 68);
-                   border: none;
-                   font: 14px 'Discreet'}
-            QMenu::item:selected {color: rgb(217, 217, 217);
-                   background-color: rgb(58, 69, 81)}""")
+        self.pushbutton_menu = QtWidgets.QMenu(self)
+        self.pushbutton_menu.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.pushbutton_menu.aboutToShow.connect(match_width)
+        self.pushbutton_menu.setStyleSheet('''
+            QMenu {
+                color: rgb(154, 154, 154);
+                background-color: rgb(45, 55, 68);
+                border: none; font: 14px "Discreet"}
+            QMenu::item:selected {
+                color: rgb(217, 217, 217);
+                background-color: rgb(58, 69, 81)}''')
 
-        for option in menu_options:
-            pushbutton_menu.addAction(option, partial(create_menu, option, menu_action))
+        self.populate_menu(menu_options)
+        self.setMenu(self.pushbutton_menu)
 
-        self.setMenu(pushbutton_menu)
+    def create_menu(self, option, menu_action):
+        """Create menu."""
+        self.setText(option)
+
+        if menu_action:
+            menu_action()
+
+    def populate_menu(self, options):
+        """Empty the menu then reassemble the options."""
+        self.pushbutton_menu.clear()
+
+        for option in options:
+            self.pushbutton_menu.addAction(
+                option, partial(self.create_menu, option, self.menu_action))
 
 
 class FlameTextEdit(QtWidgets.QTextEdit):
