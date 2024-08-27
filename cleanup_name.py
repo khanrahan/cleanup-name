@@ -468,12 +468,12 @@ class CleanupName:
 
 
 def scope_clip(selection):
-
+    """Test selection."""
     return any(isinstance(item, flame.PyClip) for item in selection)
 
 
 def get_media_panel_custom_ui_actions():
-
+    """Add right click menu item."""
     return [{'name': 'Edit...',
              'actions': [{'name': 'Cleanup Name',
                           'isVisible': scope_clip,
