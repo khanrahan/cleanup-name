@@ -130,8 +130,6 @@ class FlameListWidget(QtWidgets.QListWidget):
         self.setMinimumSize(500, 250)
         self.setParent(parent_window)
         self.setFocusPolicy(QtCore.Qt.NoFocus)
-        # only want 1 selection possible.  no multi selection.
-        #self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.setSpacing(3)
         self.setAlternatingRowColors(True)
         self.setUniformItemSizes(True)
@@ -421,8 +419,6 @@ class CleanupName:
         self.view_btn = FlamePushButtonMenu(self.view_selection, self.views,
                 menu_action=self.update_view)
         self.view_btn.setMaximumWidth(100)
-        #the below should work, but doesnt
-        #self.view_btn.released.connect(self.update_view)
 
         self.ok_btn = FlameButton('Ok', okay_button, self.window)
         self.ok_btn.setStyleSheet('background: #732020')
