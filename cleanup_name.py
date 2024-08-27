@@ -48,7 +48,7 @@ class FlameButton(QtWidgets.QPushButton):
     """
 
     def __init__(self, button_name, do_when_pressed, parent_window, *args, **kwargs):
-        super(FlameButton, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.setText(button_name)
         self.setParent(parent_window)
@@ -84,7 +84,7 @@ class FlameLabel(QtWidgets.QLabel):
     """
 
     def __init__(self, label_name, label_type, parent_window, *args, **kwargs):
-        super(FlameLabel, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.setText(label_name)
         self.setParent(parent_window)
@@ -125,7 +125,7 @@ class FlameListWidget(QtWidgets.QListWidget):
     """
 
     def __init__(self, parent_window, *args, **kwargs):
-        super(FlameListWidget, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.setMinimumSize(500, 250)
         self.setParent(parent_window)
@@ -167,7 +167,7 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
     """
 
     def __init__(self, button_name, menu_options, menu_width=150, max_menu_width=2000, menu_action=None):
-        super(FlamePushButtonMenu, self).__init__()
+        super().__init__()
         from functools import partial
 
         self.setText(button_name)
@@ -225,7 +225,7 @@ class FlameTextEdit(QtWidgets.QTextEdit):
     """
 
     def __init__(self, text, read_only=False):
-        super(FlameTextEdit, self).__init__()
+        super().__init__()
 
         self.setMinimumHeight(20)
         self.setMinimumWidth(150)
