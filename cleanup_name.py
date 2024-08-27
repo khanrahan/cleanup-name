@@ -403,6 +403,17 @@ class CleanupName:
 
 
     @staticmethod
+    def refresh():
+        """Refresh the flame UI.
+
+        Necessary after changing attributes to have the changes show up on the
+        Desktop.  Otherwise, the script runs, but the change will not be shown on the
+        thumbnail until you tap on the UI.
+        """
+        flame.execute_shortcut('Refresh Thumbnails')
+
+
+    @staticmethod
     def cleanup_text(text):
         """Returns string that is appropriate for filename usage."""
         import re
@@ -460,7 +471,7 @@ class CleanupName:
             self.window.close()
             self.update_names()
             self.refresh()
-            self.message("Done!")
+            self.message('Done!')
 
         def cancel_button():
 
@@ -497,7 +508,6 @@ class CleanupName:
         self.view_btn.setMaximumWidth(100)
 
         self.ok_btn = FlameButton('Ok', okay_button, button_color='blue')
-        self.ok_btn.setStyleSheet('background: #732020')
         self.ok_btn.setShortcut('Return')
 
         self.cancel_btn = FlameButton('Cancel', cancel_button)
