@@ -2,7 +2,7 @@
 Script Name: Cleanup Name
 Written By: Kieran Hanrahan
 
-Script Version: 2.0.0
+Script Version: 1.0.0
 Flame Version: 2022
 
 URL: http://github.com/khanrahan/cleanup-name
@@ -35,7 +35,7 @@ import flame
 from PySide2 import QtCore, QtWidgets
 
 TITLE = 'Cleanup Name'
-VERSION_INFO = (2, 0, 0)
+VERSION_INFO = (1, 0, 0)
 VERSION = '.'.join([str(num) for num in VERSION_INFO])
 VERSION_TITLE = f'{TITLE} v{VERSION}'
 
