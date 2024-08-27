@@ -41,10 +41,10 @@ MESSAGE_PREFIX = '[PYTHON]'
 
 
 class FlameButton(QtWidgets.QPushButton):
-    """
-    Custom Qt Flame Button Widget
-    To use:
-    button = FlameButton('Button Name', do_when_pressed, window)
+    """Custom Qt Flame Button Widget
+
+    Usage:
+        button = FlameButton('Button Name', do_when_pressed, window)
     """
 
     def __init__(self, button_name, do_when_pressed, parent_window, *args, **kwargs):
@@ -76,11 +76,12 @@ class FlameButton(QtWidgets.QPushButton):
 
 
 class FlameLabel(QtWidgets.QLabel):
-    """
-    Custom Qt Flame Label Widget
+    """Custom Qt Flame Label Widget
+
     For different label looks set label_type as: 'normal', 'background', or 'outline'
-    To use:
-    label = FlameLabel('Label Name', 'normal', window)
+
+    Usage:
+        label = FlameLabel('Label Name', 'normal', window)
     """
 
     def __init__(self, label_name, label_type, parent_window, *args, **kwargs):
@@ -118,10 +119,10 @@ class FlameLabel(QtWidgets.QLabel):
 
 
 class FlameListWidget(QtWidgets.QListWidget):
-    """
-    Custom Qt Flame List Widget
-    To use:
-    list_widget = FlameListWidget(window)
+    """Custom Qt Flame List Widget
+
+    Usage:
+        list_widget = FlameListWidget(window)
     """
 
     def __init__(self, parent_window, *args, **kwargs):
@@ -144,8 +145,7 @@ class FlameListWidget(QtWidgets.QListWidget):
 
 
 class FlamePushButtonMenu(QtWidgets.QPushButton):
-    """
-    Custom Qt Flame Menu Push Button Widget v2.0
+    """Custom Qt Flame Menu Push Button Widget v2.0
 
     button_name: text displayed on button [str]
     menu_options: list of options show when button is pressed [list]
@@ -154,7 +154,6 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
     menu_action: (optional) execute when button is changed. [function]
 
     Usage:
-
         push_button_menu_options = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
         menu_push_button = FlamePushButtonMenu(
                 'push_button_name', push_button_menu_options)
@@ -214,14 +213,12 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
 
 
 class FlameTextEdit(QtWidgets.QTextEdit):
-    """
-    Custom Qt Flame Text Edit Widget v2.1
+    """Custom Qt Flame Text Edit Widget v2.1
 
     text: text to be displayed [str]
     read_only: (optional) make text in window read only [bool] - default is False
 
-    To use:
-
+    Usage:
         text_edit = FlameTextEdit('some_text_here', True_or_False)
     """
 
@@ -306,10 +303,13 @@ class FlameTextEdit(QtWidgets.QTextEdit):
 
 
 class CleanupName:
-    """Takes PyClips and sanitizes the name to remove all symbols and change whitespace
-    to underscores."""
+    """Takes PyClips and sanitizes the name.
+
+    Will remove all symbols and change whitespace to underscores.
+    """
 
     def __init__(self, selection):
+        """Initialize object."""
         self.selection = selection
         self.names = [clip.name.get_value() for clip in self.selection]
         self.names_clean = [self.cleanup_text(name) for name in self.names]
@@ -382,6 +382,7 @@ class CleanupName:
 
 
     def main_window(self):
+        """The main GUI window."""
 
         def okay_button():
 
