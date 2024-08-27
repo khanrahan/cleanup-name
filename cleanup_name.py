@@ -327,14 +327,12 @@ class CleanupName:
     @staticmethod
     def message(string):
         """Print message to shell window and append global MESSAGE_PREFIX."""
-
         print(' '.join([MESSAGE_PREFIX, string]))
 
 
     @staticmethod
     def cleanup_text(text):
         """Returns string that is appropriate for filename usage."""
-
         import re
 
         # Delete first and last character if a symbol or space.
@@ -357,7 +355,6 @@ class CleanupName:
 
     def update_view(self):
         """Clear the list view and replace with the appropriate list."""
-
         self.list_scroll.clear()
 
         if self.view_btn.text() == 'Clean Name':
@@ -374,7 +371,6 @@ class CleanupName:
             self.names = name of the PyClip objects
             self.names_clean = cleaned up names of the above
         """
-
         for num, clip in enumerate(self.selection):
             if self.names[num] == self.names_clean[num]:
                 self.message('Skipping {}. No changes necessary.'.format(self.names[num]))
