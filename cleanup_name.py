@@ -156,15 +156,18 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
     Usage:
 
         push_button_menu_options = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
-        menu_push_button = FlamePushButtonMenu('push_button_name', push_button_menu_options)
+        menu_push_button = FlamePushButtonMenu(
+                'push_button_name', push_button_menu_options)
 
         or
 
         push_button_menu_options = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
-        menu_push_button = FlamePushButtonMenu(push_button_menu_options[0], push_button_menu_options)
+        menu_push_button = FlamePushButtonMenu(
+                push_button_menu_options[0], push_button_menu_options)
     """
 
-    def __init__(self, button_name, menu_options, menu_width=150, max_menu_width=2000, menu_action=None):
+    def __init__(self, button_name, menu_options, menu_width=150, max_menu_width=2000,
+                 menu_action=None):
         super().__init__()
         from functools import partial
 
@@ -404,8 +407,9 @@ class CleanupName:
         # Center Window
         resolution = QtWidgets.QDesktopWidget().screenGeometry()
 
-        self.window.move((resolution.width() / 2) - (self.window.frameSize().width() / 2),
-                         (resolution.height() / 2) - (self.window.frameSize().height() / 2))
+        self.window.move(
+                (resolution.width() / 2) - (self.window.frameSize().width() / 2),
+                (resolution.height() / 2) - (self.window.frameSize().height() / 2))
 
         # Labels
         self.description_label = FlameLabel('Description', 'normal', self.window)
