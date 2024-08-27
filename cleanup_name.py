@@ -37,7 +37,7 @@ VERSION_INFO = (1, 0, 0, 'dev')
 VERSION = '.'.join([str(num) for num in VERSION_INFO])
 VERSION_TITLE = f'{TITLE} v{VERSION}'
 
-MESSAGE_PREFIX = "[PYTHON HOOK]"
+MESSAGE_PREFIX = '[PYTHON]'
 
 
 class FlameButton(QtWidgets.QPushButton):
