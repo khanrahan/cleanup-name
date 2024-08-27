@@ -29,7 +29,7 @@ To Install:
     /opt/Autodesk/user/<user name>/python
 """
 
-from PySide2 import QtWidgets, QtCore
+from PySide2 import QtCore, QtWidgets
 
 TITLE = 'Cleanup Name'
 VERSION_INFO = (1, 0, 0, 'dev')
