@@ -1,9 +1,14 @@
-"""
-Cleanup Name
+'''
+Script Name: Cleanup Name
+Written By: Kieran Hanrahan
 
-URL:
+Script Version: 1.0.0
+Flame Version: 2021.1
 
-    https://github.com/khanrahan/cleanup-name
+URL: http://github.com/khanrahan/cleanup-name
+
+Creation Date: 06.23.23
+Update Date: 10.04.23
 
 Description:
 
@@ -22,9 +27,8 @@ To Install:
 
     For a specific user, copy this file to:
     /opt/Autodesk/user/<user name>/python
-"""
+'''
 
-from __future__ import print_function
 from PySide2 import QtWidgets, QtCore
 
 __title__ = "Cleanup Name"
@@ -183,7 +187,7 @@ class FlamePushButtonMenu(QtWidgets.QPushButton):
             QPushButton:hover {border: 1px solid rgb(90, 90, 90)}
             QPushButton::menu-indicator {image: none}
             QToolTip {color: rgb(170, 170, 170);
-                      background-color: rgb(71, 71, 71); 
+                      background-color: rgb(71, 71, 71);
                       border: 10px solid rgb(71, 71, 71)}""")
 
         def create_menu(option, menu_action):
@@ -341,13 +345,13 @@ class CleanupName(object):
 
         return tidy
 
-    @staticmethod                                                                       
-    def refresh():                                                                      
-        """Necessary after changing attributes to have the changes show up on the       
-        Desktop.  Otherwise, the script runs, but the change will not be shown on the   
-        thumbnail until you tap on the UI."""                                           
-                                                                                        
-        import flame                                                                    
+    @staticmethod
+    def refresh():
+        """Necessary after changing attributes to have the changes show up on the
+        Desktop.  Otherwise, the script runs, but the change will not be shown on the
+        thumbnail until you tap on the UI."""
+
+        import flame
         flame.execute_shortcut("Refresh Thumbnails")
 
     def update_view(self):
@@ -483,5 +487,5 @@ def get_media_panel_custom_ui_actions():
              'actions': [{'name': "Cleanup Name",
                           'isVisible': scope_clip,
                           'execute': CleanupName,
-                          'minimumVersion': "2021.1"}]
+                          'minimumVersion': "2022"}]
             }]
