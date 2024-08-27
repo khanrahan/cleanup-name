@@ -29,6 +29,7 @@ To Install:
     /opt/Autodesk/user/<user name>/python
 """
 
+import flame
 from PySide2 import QtCore, QtWidgets
 
 TITLE = 'Cleanup Name'
@@ -473,7 +474,6 @@ class CleanupName:
 
 def scope_clip(selection):
 
-    import flame
     return any(isinstance(item, flame.PyClip) for item in selection)
 
 
