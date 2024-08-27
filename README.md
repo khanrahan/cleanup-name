@@ -3,6 +3,12 @@ Plugin for Autodesk Flame software.
 
 Cleanup clip names by removing all symbols and changing whitespace to underscores.
 
+## Compatibility
+|Script Version|Flame Version|
+|---|---|
+|v2.X.X|Flame 2022 up to 2024.2|
+|v1.X.X|Flame 2021 up to 2021.2|
+
 ## Installation
 To make available to all users on the workstation, copy `cleanup_name.py` to `/opt/Autodesk/shared/python`
 
