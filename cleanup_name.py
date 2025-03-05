@@ -543,7 +543,12 @@ class CleanupName:
 
 def scope_clip(selection):
     """Test selection."""
-    return any(isinstance(item, flame.PyClip) for item in selection)
+    valid_objects = (
+            flame.PyClip,
+            flame.PySegment,
+    )
+
+    return all(isinstance(item, valid_objects) for item in selection)
 
 
 def get_media_panel_custom_ui_actions():
