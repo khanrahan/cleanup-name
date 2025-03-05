@@ -3,7 +3,7 @@ Script Name: Cleanup Name
 Written By: Kieran Hanrahan
 
 Script Version: 1.0.0
-Flame Version: 2022
+Flame Version: 2025
 
 URL: http://github.com/khanrahan/cleanup-name
 
@@ -32,7 +32,7 @@ To Install:
 from functools import partial
 
 import flame
-from PySide2 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 
 TITLE = 'Cleanup Name'
 VERSION_INFO = (1, 0, 0)
@@ -474,11 +474,12 @@ class CleanupName:
         self.window.setFocusPolicy(QtCore.Qt.StrongFocus)
 
         # Center Window
-        resolution = QtWidgets.QDesktopWidget().screenGeometry()
+        resolution = QtGui.QGuiApplication.primaryScreen().availableGeometry()
 
         self.window.move(
                 (resolution.width() / 2) - (self.window.frameSize().width() / 2),
-                (resolution.height() / 2) - (self.window.frameSize().height() / 2))
+                (resolution.height() / 2) - (self.window.frameSize().height() / 2)
+        )
 
         # Labels
         self.description_label = FlameLabel('Description', 'normal')
@@ -522,7 +523,7 @@ class CleanupName:
         self.hbox2.addWidget(self.ok_btn)
 
         self.vbox = QtWidgets.QVBoxLayout()
-        self.vbox.setMargin(20)
+        self.vbox.setContentsMargins(20, 20, 20, 20)
         self.vbox.addLayout(self.grid)
         self.vbox.insertSpacing(1, 20)
         self.vbox.addLayout(self.hbox)
@@ -551,5 +552,5 @@ def get_media_panel_custom_ui_actions():
              'actions': [{'name': 'Cleanup Name',
                           'isVisible': scope_clip,
                           'execute': CleanupName,
-                          'minimumVersion': '2022'}]
+                          'minimumVersion': '2025'}]
             }]
