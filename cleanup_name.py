@@ -395,12 +395,10 @@ class CleanupName:
 
         self.main_window()
 
-
     @staticmethod
     def message(string):
         """Print message to shell window and append global MESSAGE_PREFIX."""
         print(' '.join([MESSAGE_PREFIX, string]))
-
 
     @staticmethod
     def refresh():
@@ -411,7 +409,6 @@ class CleanupName:
         thumbnail until you tap on the UI.
         """
         flame.execute_shortcut('Refresh Thumbnails')
-
 
     @staticmethod
     def cleanup_text(text):
@@ -427,7 +424,6 @@ class CleanupName:
 
         return tidy
 
-
     def update_view(self):
         """Clear the list view and replace with the appropriate list."""
         self.list_scroll.clear()
@@ -436,7 +432,6 @@ class CleanupName:
             self.list_scroll.addItems(self.names_clean)
         if self.view_btn.text() == 'Original Name':
             self.list_scroll.addItems(self.names)
-
 
     def update_names(self):
         """Change names of the PyClips to the clean names, skip if unnecesary.
@@ -453,7 +448,6 @@ class CleanupName:
 
             clip.name.set_value(self.names_clean[num])
             self.message(f'Renamed {self.names[num]} to {self.names_clean[num]}.')
-
 
     def main_window(self):
         """The main GUI window."""
