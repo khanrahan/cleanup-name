@@ -552,5 +552,5 @@ def get_media_panel_custom_ui_actions():
              'actions': [{'name': 'Cleanup Name',
                           'isVisible': scope_clip,
                           'execute': CleanupName,
-                          'minimumVersion': '2025'}]
+                          'minimumVersion': '2025.0.0.0'}]
             }]
