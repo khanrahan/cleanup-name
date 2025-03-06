@@ -2,13 +2,13 @@
 Script Name: Cleanup Name
 Written By: Kieran Hanrahan
 
-Script Version: 1.0.0
-Flame Version: 2022
+Script Version: 2.0.0
+Flame Version: 2025
 
 URL: http://github.com/khanrahan/cleanup-name
 
 Creation Date: 06.23.23
-Update Date: 08.27.24
+Update Date: 03.05.25
 
 Description:
 
@@ -32,10 +32,10 @@ To Install:
 from functools import partial
 
 import flame
-from PySide2 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 
 TITLE = 'Cleanup Name'
-VERSION_INFO = (1, 0, 0)
+VERSION_INFO = (2, 0, 0)
 VERSION = '.'.join([str(num) for num in VERSION_INFO])
 VERSION_TITLE = f'{TITLE} v{VERSION}'
 
@@ -395,12 +395,10 @@ class CleanupName:
 
         self.main_window()
 
-
     @staticmethod
     def message(string):
         """Print message to shell window and append global MESSAGE_PREFIX."""
         print(' '.join([MESSAGE_PREFIX, string]))
-
 
     @staticmethod
     def refresh():
@@ -411,7 +409,6 @@ class CleanupName:
         thumbnail until you tap on the UI.
         """
         flame.execute_shortcut('Refresh Thumbnails')
-
 
     @staticmethod
     def cleanup_text(text):
@@ -427,7 +424,6 @@ class CleanupName:
 
         return tidy
 
-
     def update_view(self):
         """Clear the list view and replace with the appropriate list."""
         self.list_scroll.clear()
@@ -436,7 +432,6 @@ class CleanupName:
             self.list_scroll.addItems(self.names_clean)
         if self.view_btn.text() == 'Original Name':
             self.list_scroll.addItems(self.names)
-
 
     def update_names(self):
         """Change names of the PyClips to the clean names, skip if unnecesary.
@@ -453,7 +448,6 @@ class CleanupName:
 
             clip.name.set_value(self.names_clean[num])
             self.message(f'Renamed {self.names[num]} to {self.names_clean[num]}.')
-
 
     def main_window(self):
         """The main GUI window."""
@@ -480,11 +474,12 @@ class CleanupName:
         self.window.setFocusPolicy(QtCore.Qt.StrongFocus)
 
         # Center Window
-        resolution = QtWidgets.QDesktopWidget().screenGeometry()
+        resolution = QtGui.QGuiApplication.primaryScreen().availableGeometry()
 
         self.window.move(
                 (resolution.width() / 2) - (self.window.frameSize().width() / 2),
-                (resolution.height() / 2) - (self.window.frameSize().height() / 2))
+                (resolution.height() / 2) - (self.window.frameSize().height() / 2)
+        )
 
         # Labels
         self.description_label = FlameLabel('Description', 'normal')
@@ -528,11 +523,11 @@ class CleanupName:
         self.hbox2.addWidget(self.ok_btn)
 
         self.vbox = QtWidgets.QVBoxLayout()
-        self.vbox.setMargin(20)
+        self.vbox.setContentsMargins(20, 20, 20, 20)
         self.vbox.addLayout(self.grid)
-        self.vbox.insertSpacing(1, 20)
+        self.vbox.addSpacing(20)
         self.vbox.addLayout(self.hbox)
-        self.vbox.insertSpacing(3, 20)
+        self.vbox.addSpacing(20)
         self.vbox.addLayout(self.hbox2)
 
         self.window.setLayout(self.vbox)
@@ -543,7 +538,12 @@ class CleanupName:
 
 def scope_clip(selection):
     """Test selection."""
-    return any(isinstance(item, flame.PyClip) for item in selection)
+    valid_objects = (
+            flame.PyClip,
+            flame.PySegment,
+    )
+
+    return all(isinstance(item, valid_objects) for item in selection)
 
 
 def get_media_panel_custom_ui_actions():
@@ -552,5 +552,5 @@ def get_media_panel_custom_ui_actions():
              'actions': [{'name': 'Cleanup Name',
                           'isVisible': scope_clip,
                           'execute': CleanupName,
-                          'minimumVersion': '2022'}]
+                          'minimumVersion': '2025.0.0.0'}]
             }]
